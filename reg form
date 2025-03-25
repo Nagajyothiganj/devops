@@ -1,0 +1,106 @@
+app.py
+from flask import Flask, request, render_template
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        print(f"Received: Name={name}, Email={email}, Password={password}")
+
+        return render_template('success.html')
+
+    return render_template('register.html')
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0",port=5000,debug=True)
+
+
+success.html
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+</head>
+<body>
+    <h2>Registration Successful</h2>
+</body>
+</html>
+
+register.html
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form id="registerForm" method="post" action="/register">
+        <input type="text" id="name" name="name" placeholder="Name" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Submit">
+    </form>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+
+styles.css
+
+
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+form {
+    width: 200px;
+    margin: auto;
+}
+
+input {
+    width: 100%;
+    margin: 5px 0;
+}
+
+
+
+script.js
+
+
+
+
+document.getElementById("registerForm").addEventListener("submit", function (event) {
+    if (!document.getElementById("name").value || 
+        !document.getElementById("email").value || 
+        !document.getElementById("password").value) {
+        alert("All fields are required!");
+        event.preventDefault();
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
