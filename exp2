@@ -1,0 +1,28 @@
+git commands 
+
+git init
+git clone url
+git add [file]
+git add .
+git push
+git pull
+git branch
+git merge [branch]
+git chechout [branch]
+git status
+git commit -m "changes"
+git log
+git diff
+
+
+
+github commands
+
+git init
+git remote add origin url
+git remote -v
+git git push -u origin branch
+git clone url
+git fork
+git pull -request
+git merge
